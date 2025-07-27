@@ -12,6 +12,15 @@ services:
       - 9117:9117
     restart: unless-stopped
 
+  flaresolverr:
+    image: flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - TZ=Europe/Paris
+    ports:
+      - 8191:8191
+    restart: unless-stopped
+
   transmission:
     container_name: transmission
     restart: unless-stopped
