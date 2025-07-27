@@ -29,7 +29,7 @@ services:
     volumes:
       - ./protonvpn/:/etc/openvpn/custom/
       - ./transmission:/config # where transmission-home is stored
-      - ${MEDIA_DIR}/transmission/downloads:/downloads # where transmission will store the data
+      - ${MEDIA_DIR}/transmission/downloads:/data # where transmission will store the data
     environment:
       - OPENVPN_PROVIDER=custom
       - OPENVPN_CONFIG=${PROTONVPN_NODE}.protonvpn.udp
