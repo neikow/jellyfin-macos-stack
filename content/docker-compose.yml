@@ -13,7 +13,7 @@ services:
       - ./sonarr_config:/config
       - ${MEDIA_DIR}/anime:/anime
       - ${MEDIA_DIR}/tvshows:/tvshows
-      - ${MEDIA_DIR}/transmission/downloads/complete:/downloads/complete
+      - ${MEDIA_DIR}/transmission/downloads/complete:/data/completed
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -25,7 +25,7 @@ services:
       - TZ=Europe/Paris
     volumes:
       - ./radarr_config:/config
-      - ${MEDIA_DIR}/transmission/downloads/complete:/downloads/complete
+      - ${MEDIA_DIR}/transmission/downloads/complete:/data/completed
       - ${MEDIA_DIR}/movies:/movies
     ports:
       - 7878:7878
