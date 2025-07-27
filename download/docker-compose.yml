@@ -3,8 +3,6 @@ services:
     image: linuxserver/jackett
     container_name: jackett
     environment:
-      - PUID=1000
-      - PGID=1000
       - TZ=Europe/Paris
       - AUTO_UPDATE=true #optional
     volumes:
@@ -29,8 +27,6 @@ services:
       - OPENVPN_USERNAME=${PROTONVPN_USERNAME}+pmp
       - OPENVPN_PASSWORD=${PROTONVPN_PASSWORD}
       - LOCAL_NETWORK=192.168.1.0/24
-      - PUID=1000
-      - PGID=1000
       - TZ=Europe/Paris
     logging:
       driver: json-file

@@ -22,8 +22,6 @@ services:
     image: linuxserver/radarr
     container_name: radarr
     environment:
-      - PUID=1000
-      - PGID=1000
       - TZ=Europe/Paris
     volumes:
       - ./radarr_config:/config
@@ -37,8 +35,6 @@ services:
     image: linuxserver/bazarr
     container_name: bazarr
     environment:
-      - PUID=1000
-      - PGID=1000
       - TZ=Europe/Paris
     volumes:
       - ./bazarr_config:/config
@@ -53,8 +49,6 @@ services:
     image: fallenbagel/jellyseerr:develop
     container_name: jellyseerr
     environment:
-      - PUID=1000
-      - PGID=1000
       - LOG_LEVEL=debug
       - TZ=Europe/Paris
     ports:
