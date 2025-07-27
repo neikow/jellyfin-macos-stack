@@ -1,0 +1,68 @@
+services:
+  # jellyfin:
+  # Because we run Jellyfin on a Mac M2, it is advised to download the application directly
+  # from the website and run it directly, as the Docker image is not supported.
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+    volumes:
+      - ./sonarr_config:/config
+      - ${MEDIA_DIR}/anime:/anime
+      - ${MEDIA_DIR}/tvshows:/tvshows
+      - ${MEDIA_DIR}/transmission/downloads/complete:/downloads/complete
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+    volumes:
+      - ./radarr_config:/config
+      - ${MEDIA_DIR}/transmission/downloads/complete:/downloads/complete
+      - ${MEDIA_DIR}/movies:/movies
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+
+  bazarr:
+    image: linuxserver/bazarr
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+    volumes:
+      - ./bazarr_config:/config
+      - ${MEDIA_DIR}/movies:/movies
+      - ${MEDIA_DIR}/tvshows:/tvshows
+      - ${MEDIA_DIR}/anime:/anime
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+
+  jellyseerr:
+    image: fallenbagel/jellyseerr:develop
+    container_name: jellyseerr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - LOG_LEVEL=debug
+      - TZ=Europe/Paris
+    ports:
+      - 5055:5055
+    volumes:
+      - ./jellyseerr_config:/app/config
+    restart: unless-stopped
+    depends_on:
+      - radarr
+      - sonarr
+

@@ -1,0 +1,41 @@
+services:
+  jackett:
+    image: linuxserver/jackett
+    container_name: jackett
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+      - AUTO_UPDATE=true #optional
+    volumes:
+      - ./jackett:/config
+      - ${MEDIA_DIR}/jackett/downloads:/downloads
+    ports:
+      - 9117:9117
+    restart: unless-stopped
+
+  transmission:
+    container_name: transmission
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./protonvpn/:/etc/openvpn/custom/
+      - ./transmission:/config # where transmission-home is stored
+      - ${MEDIA_DIR}/transmission/downloads:/downloads # where transmission will store the data
+    environment:
+      - OPENVPN_PROVIDER=custom
+      - OPENVPN_CONFIG=${PROTONVPN_NODE}.protonvpn.udp
+      - OPENVPN_USERNAME=${PROTONVPN_USERNAME}+pmp
+      - OPENVPN_PASSWORD=${PROTONVPN_PASSWORD}
+      - LOCAL_NETWORK=192.168.0.0/16
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+    ports:
+      - 9091:9091
+    image: haugene/transmission-openvpn
