@@ -25,7 +25,7 @@ services:
       - TZ=Europe/Paris
     volumes:
       - ./radarr_config:/config
-      - ${MEDIA_DIR}/transmission/downloads/completed:/downloads/completed
+      - ${MEDIA_DIR}/transmission/downloads/completed:/data/completed
       - ${MEDIA_DIR}/movies:/movies
     ports:
       - 7878:7878
