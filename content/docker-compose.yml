@@ -46,7 +46,7 @@ services:
     restart: unless-stopped
 
   jellyseerr:
-    image: fallenbagel/jellyseerr:develop
+    image: fallenbagel/jellyseerr
     container_name: jellyseerr
     environment:
       - LOG_LEVEL=debug
