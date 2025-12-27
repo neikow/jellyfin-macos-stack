@@ -3,9 +3,6 @@ services:
   jackett:
     image: linuxserver/jackett
     container_name: media_jackett
-    networks:
-      - internal
-      - nginx
     environment:
       - TZ=${TZ}
       - AUTO_UPDATE=true
@@ -19,8 +16,6 @@ services:
   flaresolverr:
     image: flaresolverr/flaresolverr
     container_name: media_flaresolverr
-    networks:
-      - internal
     environment:
       - TZ=${TZ}
 #    ports:
@@ -31,9 +26,6 @@ services:
     image: haugene/transmission-openvpn
     container_name: media_transmission
     restart: unless-stopped
-    networks:
-      - internal
-      - nginx
     cap_add:
       - NET_ADMIN
     volumes:
@@ -70,9 +62,6 @@ services:
   sonarr:
     image: linuxserver/sonarr
     container_name: media_sonarr
-    networks:
-      - internal
-      - nginx
     environment:
       - TZ=${TZ}
     volumes:
@@ -87,9 +76,6 @@ services:
   radarr:
     image: linuxserver/radarr
     container_name: media_radarr
-    networks:
-      - internal
-      - nginx
     environment:
       - TZ=${TZ}
     volumes:
@@ -103,9 +89,6 @@ services:
   bazarr:
     image: linuxserver/bazarr
     container_name: media_bazarr
-    networks:
-      - internal
-      - nginx
     environment:
       - TZ=${TZ}
     volumes:
@@ -120,9 +103,6 @@ services:
   jellyseerr:
     image: fallenbagel/jellyseerr
     container_name: media_jellyseerr
-    networks:
-      - internal
-      - nginx
     environment:
       - TZ=${TZ}
 #    ports:
@@ -133,9 +113,3 @@ services:
     depends_on:
       - radarr
       - sonarr
-
-networks:
-  internal:
-  nginx:
-    external: true
-    name: nginx
