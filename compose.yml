@@ -9,8 +9,8 @@ services:
     volumes:
       - ./jackett:/config
       - ${MEDIA_DIR}/jackett/downloads:/downloads
-#    ports:
-#      - "9117:9117"
+    ports:
+      - "9117:9117"
     restart: unless-stopped
 
   flaresolverr:
@@ -18,8 +18,8 @@ services:
     container_name: media_flaresolverr
     environment:
       - TZ=${TZ}
-#    ports:
-#      - "8191:8191"
+    ports:
+      - "8191:8191"
     restart: unless-stopped
 
   transmission:
@@ -50,7 +50,7 @@ services:
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=1
     ports:
-    #  - "9091:9091"
+      - "9091:9091"
       - "51413:51413"
       - "51413:51413/udp"
 
@@ -69,8 +69,8 @@ services:
       - ${MEDIA_DIR}/anime:/anime
       - ${MEDIA_DIR}/tvshows:/tvshows
       - ${MEDIA_DIR}/downloads/completed:/data/completed
-#    ports:
-#      - "8989:8989"
+    ports:
+      - "8989:8989"
     restart: unless-stopped
 
   radarr:
@@ -82,8 +82,8 @@ services:
       - ./radarr_config:/config
       - ${MEDIA_DIR}/downloads/completed:/data/completed
       - ${MEDIA_DIR}/movies:/movies
-#    ports:
-#      - "7878:7878"
+    ports:
+      - "7878:7878"
     restart: unless-stopped
 
   bazarr:
@@ -96,8 +96,8 @@ services:
       - ${MEDIA_DIR}/movies:/movies
       - ${MEDIA_DIR}/tvshows:/tvshows
       - ${MEDIA_DIR}/anime:/anime
-#    ports:
-#      - "6767:6767"
+    ports:
+      - "6767:6767"
     restart: unless-stopped
 
   jellyseerr:
@@ -105,8 +105,8 @@ services:
     container_name: media_jellyseerr
     environment:
       - TZ=${TZ}
-#    ports:
-#      - "5055:5055"
+    ports:
+      - "5055:5055"
     volumes:
       - ./jellyseerr_config:/app/config
     restart: unless-stopped
