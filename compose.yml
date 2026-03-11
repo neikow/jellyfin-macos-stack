@@ -29,15 +29,15 @@ services:
     cap_add:
       - NET_ADMIN
     volumes:
-      - ./protonvpn/:/etc/openvpn/custom/
+      - ./openvpn/:/etc/openvpn/custom/
       - ./transmission:/config
       - ${MEDIA_DIR}/downloads/completed:/data/completed
       - ${MEDIA_DIR}/downloads/incomplete:/data/incomplete
     environment:
       - OPENVPN_PROVIDER=custom
-      - OPENVPN_CONFIG=${PROTONVPN_NODE}.protonvpn.udp
-      - OPENVPN_USERNAME=${PROTONVPN_USERNAME}+pmp
-      - OPENVPN_PASSWORD=${PROTONVPN_PASSWORD}
+      - OPENVPN_CONFIG=${OPENVPN_CONFIG}
+      - OPENVPN_USERNAME=${OPENVPN_USERNAME}
+      - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
       - LOCAL_NETWORK=192.168.1.0/24
       - TZ=${TZ}
     logging:
@@ -51,8 +51,6 @@ services:
       - net.ipv6.conf.all.disable_ipv6=1
     ports:
       - "9091:9091"
-      - "51413:51413"
-      - "51413:51413/udp"
 
 # ================= Media Management Services ==================
   # jellyfin:
