@@ -39,6 +39,8 @@ services:
       - OPENVPN_USERNAME=${OPENVPN_USERNAME}
       - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
       - LOCAL_NETWORK=192.168.1.0/24
+      - PUID=${PUID}
+      - PGID=${PGID}
       - TZ=${TZ}
     logging:
       driver: json-file
@@ -76,6 +78,8 @@ services:
     container_name: media_radarr
     environment:
       - TZ=${TZ}
+      - PUID=${PUID}
+      - PGID=${PGID}
     volumes:
       - ./radarr_config:/config
       - ${MEDIA_DIR}/downloads/completed:/data/completed
@@ -89,6 +93,8 @@ services:
     container_name: media_bazarr
     environment:
       - TZ=${TZ}
+      - PUID=${PUID}
+      - PGID=${PGID}
     volumes:
       - ./bazarr_config:/config
       - ${MEDIA_DIR}/movies:/movies
