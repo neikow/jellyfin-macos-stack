@@ -15,6 +15,19 @@ services:
       - ${DNS_SERVER}
     restart: unless-stopped
 
+  wizarr:
+    container_name: media_wizarr
+    image: ghcr.io/wizarrrr/wizarr
+    ports:
+      - "5690:5690"
+    volumes:
+      - ./wizarr:/data
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - DISABLE_BUILTIN_AUTH=false
+      - TZ=${TZ}
+
 #  flaresolverr:
 #    image: flaresolverr/flaresolverr
 #    container_name: media_flaresolverr
