@@ -11,6 +11,8 @@ services:
       - ${MEDIA_DIR}/jackett/downloads:/downloads
     ports:
       - "9117:9117"
+    dns:
+      - ${DNS_SERVER}
     restart: unless-stopped
 
   flaresolverr:
@@ -20,6 +22,8 @@ services:
       - TZ=${TZ}
     ports:
       - "8191:8191"
+    dns:
+      - ${DNS_SERVER}
     restart: unless-stopped
 
   transmission:
@@ -73,6 +77,8 @@ services:
       - ${MEDIA_DIR}/downloads/completed:/data/completed
     ports:
       - "8989:8989"
+    dns:
+      - ${DNS_SERVER}
     restart: unless-stopped
 
   radarr:
@@ -88,6 +94,8 @@ services:
       - ${MEDIA_DIR}/movies:/movies
     ports:
       - "7878:7878"
+    dns:
+      - ${DNS_SERVER}
     restart: unless-stopped
 
   bazarr:
@@ -104,6 +112,8 @@ services:
       - ${MEDIA_DIR}/anime:/anime
     ports:
       - "6767:6767"
+    dns:
+      - ${DNS_SERVER}
     restart: unless-stopped
 
   jellyseerr:
@@ -116,6 +126,8 @@ services:
     volumes:
       - ./jellyseerr_config:/app/config
     restart: unless-stopped
+    dns:
+      - ${DNS_SERVER}
     depends_on:
       - radarr
       - sonarr
