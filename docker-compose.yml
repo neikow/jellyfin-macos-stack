@@ -15,16 +15,16 @@ services:
       - ${DNS_SERVER}
     restart: unless-stopped
 
-  flaresolverr:
-    image: flaresolverr/flaresolverr
-    container_name: media_flaresolverr
-    environment:
-      - TZ=${TZ}
-    ports:
-      - "8191:8191"
-    dns:
-      - ${DNS_SERVER}
-    restart: unless-stopped
+#  flaresolverr:
+#    image: flaresolverr/flaresolverr
+#    container_name: media_flaresolverr
+#    environment:
+#      - TZ=${TZ}
+#    ports:
+#      - "8191:8191"
+#    dns:
+#      - ${DNS_SERVER}
+#    restart: unless-stopped
 
   transmission:
     image: haugene/transmission-openvpn
